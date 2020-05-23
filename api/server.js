@@ -1,6 +1,6 @@
 const express = require("express");
 
-const AcctRouter = require('../accounts/Router')
+const AcctRouter = require('../api/Accounts/accountRouter')
 
 const server = express();
 

@@ -1,9 +1,11 @@
 const express = require('express')
 
-const db = require('../data/dbConfig')
+const db = require('../../data/dbConfig')
 
 const router = express.Router()
 
+
+// #### GET -> api/accounts -> retrieves an array of all the accounts ####
 router.get('/', (req, res) => {
 
   db('accounts')
@@ -16,6 +18,7 @@ router.get('/', (req, res) => {
   })
 })
 
+// #### GET -> api/accounts/:id -> retrieves an array of the specific account by their id ####
 router.get('/:id', (req, res) => {
   const {id}=req.params
   db('accounts')
@@ -31,6 +34,7 @@ router.get('/:id', (req, res) => {
   })
 })
 
+// #### POST -> api/accounts -> Post a new account object
 router.post('/', (req, res) => {
     const body = req.body
     db('accounts')
@@ -41,8 +45,9 @@ router.post('/', (req, res) => {
     .catch((err) => {
         res.status(500).json({ "message": "Error, Could not add Account" })
     })
-  })
+})
 
+// #### PUT/EDIT -> api/accounts/:id -> Update the specific object account by their specific id ####
 router.put('/:id', (req, res) => {
   const body = req.body
   const {id} = req.params
@@ -60,6 +65,7 @@ router.put('/:id', (req, res) => {
 
 })
 
+// #### DELETE -> api/accounts/:id -> deletes the specific object by their id
 router.delete('/:id', (req, res) => {
   const {id}=req.params
   db('accounts')
